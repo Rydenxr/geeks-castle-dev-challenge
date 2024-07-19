@@ -1,10 +1,10 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { FirebaseService } from '../database/firebase.service';
 import { User } from 'src/domains/entities/user.entity';
-import { UserRepositoy } from 'src/domains/repositories/user.repository';
+import { UserRepository } from 'src/domains/repositories/user.repository';
 
 @Injectable()
-export class UserRepositoryImpl implements UserRepositoy {
+export class UserRepositoryImpl implements UserRepository {
   constructor(private readonly firebaseService: FirebaseService) {}
 
   async checkEmail(email: string): Promise<boolean> {
