@@ -1,6 +1,6 @@
-import { CreateCustomerDto } from 'src/presentations/dtos/create-customer.dto';
+import { CreateCustomerDto } from 'src/applications/dtos/create-customer.dto';
 import { Customer } from '../entities/customer.entity';
-import { UpdateCustomerDto } from 'src/presentations/dtos/update-customer.dto';
+import { UpdateCustomerDto } from 'src/applications/dtos/update-customer.dto';
 
 export interface CustomerRepository {
   create(customer: CreateCustomerDto): Promise<Customer>;

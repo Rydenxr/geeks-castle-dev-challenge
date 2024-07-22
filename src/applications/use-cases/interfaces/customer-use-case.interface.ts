@@ -1,6 +1,6 @@
 import { Customer } from 'src/domains/entities/customer.entity';
-import { CreateCustomerDto } from 'src/presentations/dtos/create-customer.dto';
-import { UpdateCustomerDto } from 'src/presentations/dtos/update-customer.dto';
+import { CreateCustomerDto } from 'src/applications/dtos/create-customer.dto';
+import { UpdateCustomerDto } from 'src/applications/dtos/update-customer.dto';
 
 export interface ICustomerUseCase {
   create(args: CreateCustomerDto): Promise<Customer>;

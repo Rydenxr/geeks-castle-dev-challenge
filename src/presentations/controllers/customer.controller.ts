@@ -1,8 +1,8 @@
 import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
-import { CreateCustomerUseCase } from 'src/applications/use-cases/customer/customer.use-case';
-import { CreateCustomerDto } from '../dtos/create-customer.dto';
-import { UpdateCustomerDto } from '../dtos/update-customer.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateCustomerUseCase } from 'src/applications/use-cases/customer/customer.use-case';
+import { CreateCustomerDto } from '../../applications/dtos/create-customer.dto';
+import { UpdateCustomerDto } from '../../applications/dtos/update-customer.dto';
 
 @Controller('customers')
 @ApiTags('customers')

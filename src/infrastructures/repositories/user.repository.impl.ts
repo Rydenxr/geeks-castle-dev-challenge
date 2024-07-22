@@ -1,4 +1,5 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { DatabaseError } from '../exceptions/database-error';
+import { Injectable } from '@nestjs/common';
 import { FirebaseService } from '../database/firebase.service';
 import { User } from 'src/domains/entities/user.entity';
 import { UserRepository } from 'src/domains/repositories/user.repository';
@@ -17,7 +18,7 @@ export class UserRepositoryImpl implements UserRepository {
 
       return !querySnapshot.empty;
     } catch (error) {
-      throw new InternalServerErrorException('Failed to check email existence');
+      throw new DatabaseError('Failed to check email existence');
     }
   }
 
@@ -35,7 +36,7 @@ export class UserRepositoryImpl implements UserRepository {
 
       return createdUser;
     } catch (error) {
-      throw new InternalServerErrorException('Failed to create user');
+      throw new DatabaseError('Failed to create user');
     }
   }
 }

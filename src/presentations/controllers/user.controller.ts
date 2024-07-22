@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CreateUserDto } from '../dtos/create-user.dto';
-import { CreateUserUseCase } from 'src/applications/use-cases/user/user.use-case';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateUserDto } from '../../applications/dtos/create-user.dto';
+import { CreateUserUseCase } from 'src/applications/use-cases/user/user.use-case';
 
 @Controller('users')
 @ApiTags('USERS')

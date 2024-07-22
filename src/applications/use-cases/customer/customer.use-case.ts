@@ -1,13 +1,8 @@
-import {
-  BadRequestException,
-  Inject,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { ICustomerUseCase } from '../interfaces/customer-use-case.interface';
 import { Customer } from 'src/domains/entities/customer.entity';
-import { CreateCustomerDto } from 'src/presentations/dtos/create-customer.dto';
-import { UpdateCustomerDto } from 'src/presentations/dtos/update-customer.dto';
+import { CreateCustomerDto } from 'src/applications/dtos/create-customer.dto';
+import { UpdateCustomerDto } from 'src/applications/dtos/update-customer.dto';
 import { CustomerRepository } from 'src/domains/repositories/customer.repository';
 import { CUSTOMER_REPOSITORY_TOKEN } from '../../../domains/repositories/repository.tokens';
 import { calculateAge } from '../../../shared/utils/date.utils';
@@ -37,10 +32,7 @@ export class CreateCustomerUseCase implements ICustomerUseCase {
 
       return customer;
     } catch (error) {
-      if (error instanceof BadRequestException) {
-        throw error;
-      }
-      throw new Error('Failed to create customer');
+      throw error;
     }
   }
 
@@ -67,11 +59,7 @@ export class CreateCustomerUseCase implements ICustomerUseCase {
 
       await this.customerRepository.update(customerId, updatedData);
     } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
-      }
-
-      throw new Error('Failed to update customer');
+      throw error;
     }
   }
 }

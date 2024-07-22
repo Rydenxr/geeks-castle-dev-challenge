@@ -1,4 +1,5 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { DatabaseError } from '../exceptions/database-error';
 import { FirebaseService } from '../database/firebase.service';
 import { Customer } from 'src/domains/entities/customer.entity';
 import { CustomerRepository } from 'src/domains/repositories/customer.repository';
@@ -21,7 +22,7 @@ export class CustomerRepositoryImpl implements CustomerRepository {
 
       return createdCustomer;
     } catch (error) {
-      throw new InternalServerErrorException('Failed to create customer');
+      throw new DatabaseError('Failed to create customer');
     }
   }
 
@@ -33,7 +34,7 @@ export class CustomerRepositoryImpl implements CustomerRepository {
 
       return doc.data() as Customer;
     } catch (error) {
-      throw new InternalServerErrorException('Failed to create customer');
+      throw new DatabaseError('Failed to find customer');
     }
   }
 
@@ -47,7 +48,7 @@ export class CustomerRepositoryImpl implements CustomerRepository {
 
       await customerRef.update(updateData);
     } catch (error) {
-      throw new InternalServerErrorException('Failed to update customer');
+      throw new DatabaseError('Failed to update customer');
     }
   }
 }

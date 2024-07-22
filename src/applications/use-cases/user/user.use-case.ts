@@ -2,7 +2,7 @@ import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import * as crypto from 'crypto';
 import * as bcrypt from 'bcrypt';
 import { UserRepository } from '../../../domains/repositories/user.repository';
-import { CreateUserDto } from '../../../presentations/dtos/create-user.dto';
+import { CreateUserDto } from '../../dtos/create-user.dto';
 import { ICreateUserUseCase } from '../interfaces/user-use-case.interface';
 import { USER_REPOSITORY_TOKEN } from '../../../domains/repositories/repository.tokens';
 
@@ -34,13 +34,14 @@ export class CreateUserUseCase implements ICreateUserUseCase {
         email: args.email,
         password: hashedPassword,
       };
+
       return await this.userRepository.create(userData);
     } catch (error) {
       throw error;
     }
   }
 
-  private async hashPassword(password: string): Promise<string> {
+  private hashPassword(password: string): Promise<string> {
     return bcrypt.hash(password, this.saltRounds);
   }
 
