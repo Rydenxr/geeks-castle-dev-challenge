@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from '../../applications/dtos/create-user.dto';
 import { CreateUserUseCase } from 'src/applications/use-cases/user/user.use-case';
 
@@ -9,6 +9,7 @@ export class UserController {
   constructor(private readonly createUserUseCase: CreateUserUseCase) {}
 
   @Post()
+  @ApiResponse({ status: 201, description: 'User successfully created.' })
   async createUser(@Body() args: CreateUserDto) {
     return await this.createUserUseCase.create(args);
   }

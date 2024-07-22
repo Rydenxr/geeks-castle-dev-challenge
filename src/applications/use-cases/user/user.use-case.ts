@@ -5,6 +5,7 @@ import { UserRepository } from '../../../domains/repositories/user.repository';
 import { CreateUserDto } from '../../dtos/create-user.dto';
 import { ICreateUserUseCase } from '../interfaces/user-use-case.interface';
 import { USER_REPOSITORY_TOKEN } from '../../../domains/repositories/repository.tokens';
+import { DatabaseError } from 'src/infrastructures/exceptions/database-error';
 
 Injectable();
 export class CreateUserUseCase implements ICreateUserUseCase {
@@ -37,6 +38,9 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
       return await this.userRepository.create(userData);
     } catch (error) {
+      if (error instanceof DatabaseError) {
+        throw new Error('An error has ocurred');
+      }
       throw error;
     }
   }

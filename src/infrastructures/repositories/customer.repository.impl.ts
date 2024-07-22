@@ -3,12 +3,14 @@ import { DatabaseError } from '../exceptions/database-error';
 import { FirebaseService } from '../database/firebase.service';
 import { Customer } from 'src/domains/entities/customer.entity';
 import { CustomerRepository } from 'src/domains/repositories/customer.repository';
+import { CreateCustomerDto } from 'src/applications/dtos/create-customer.dto';
+import { UpdateCustomerDto } from 'src/applications/dtos/update-customer.dto';
 
 @Injectable()
 export class CustomerRepositoryImpl implements CustomerRepository {
   constructor(private readonly firebaseService: FirebaseService) {}
 
-  async create(customer: Customer): Promise<Customer> {
+  async create(customer: CreateCustomerDto): Promise<Customer> {
     try {
       const docRef = await this.firebaseService
         .getFirestore()
@@ -40,13 +42,15 @@ export class CustomerRepositoryImpl implements CustomerRepository {
 
   async update(
     customerId: string,
-    updateData: Partial<Customer>,
+    updateData: UpdateCustomerDto,
   ): Promise<void> {
     try {
       const firestone = this.firebaseService.getFirestore();
       const customerRef = firestone.collection('customers').doc(customerId);
 
-      await customerRef.update(updateData);
+      const updateObject = { ...updateData };
+
+      await customerRef.update(updateObject);
     } catch (error) {
       throw new DatabaseError('Failed to update customer');
     }

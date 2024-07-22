@@ -11,16 +11,17 @@ export class CustomerController {
 
   @Post()
   @ApiResponse({ status: 201, description: 'Customer successfully created.' })
-  async createUser(@Body() args: CreateCustomerDto) {
-    return await this.createCustomerUseCase.create(args);
+  createUser(@Body() args: CreateCustomerDto) {
+    return this.createCustomerUseCase.create(args);
   }
 
   @Patch(':customerId')
-  async updateCustomer(
+  @ApiResponse({ status: 200, description: 'Customer successfully updated.' })
+  updateCustomer(
     @Param('customerId') customerId: string,
     @Body() args: UpdateCustomerDto,
   ) {
-    await this.createCustomerUseCase.update(customerId, args);
+    this.createCustomerUseCase.update(customerId, args);
     return {
       message: 'Customer updated successfully',
     };

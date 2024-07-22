@@ -6,6 +6,7 @@ import { UpdateCustomerDto } from 'src/applications/dtos/update-customer.dto';
 import { CustomerRepository } from 'src/domains/repositories/customer.repository';
 import { CUSTOMER_REPOSITORY_TOKEN } from '../../../domains/repositories/repository.tokens';
 import { calculateAge } from '../../../shared/utils/date.utils';
+import { DatabaseError } from 'src/infrastructures/exceptions/database-error';
 
 @Injectable()
 export class CreateCustomerUseCase implements ICustomerUseCase {
@@ -32,6 +33,9 @@ export class CreateCustomerUseCase implements ICustomerUseCase {
 
       return customer;
     } catch (error) {
+      if (error instanceof DatabaseError) {
+        throw new Error('An error has ocurred');
+      }
       throw error;
     }
   }
@@ -59,6 +63,9 @@ export class CreateCustomerUseCase implements ICustomerUseCase {
 
       await this.customerRepository.update(customerId, updatedData);
     } catch (error) {
+      if (error instanceof DatabaseError) {
+        throw new Error('An error has ocurred');
+      }
       throw error;
     }
   }

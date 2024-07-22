@@ -3,7 +3,7 @@ export class Customer {
   name: string;
   lastname: string;
   birthday: Date;
-  age: number;
+  age?: number;
 
   constructor(
     id: string,

@@ -2,7 +2,7 @@ import { CreateCustomerUseCase } from './customer.use-case';
 import { CustomerRepository } from '../../../domains/repositories/customer.repository';
 import { calculateAge } from '../../../shared/utils/date.utils';
 import { Customer } from '../../../domains/entities/customer.entity';
-import { UpdateCustomerDto } from '../../../presentations/dtos/update-customer.dto';
+import { UpdateCustomerDto } from '../../../applications/dtos/update-customer.dto';
 
 describe('CreateCustomerUseCase', () => {
   let useCase: CreateCustomerUseCase;

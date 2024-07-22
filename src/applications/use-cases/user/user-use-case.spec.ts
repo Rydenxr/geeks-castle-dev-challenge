@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import { CreateUserUseCase } from '../user/user.use-case';
-import { CreateUserDto } from '../../../presentations/dtos/create-user.dto';
+import { CreateUserDto } from '../../../applications/dtos/create-user.dto';
 
 jest.mock('bcrypt', () => ({
   hash: jest.fn(),
