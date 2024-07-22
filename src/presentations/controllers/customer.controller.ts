@@ -17,11 +17,11 @@ export class CustomerController {
 
   @Patch(':customerId')
   @ApiResponse({ status: 200, description: 'Customer successfully updated.' })
-  updateCustomer(
+  async updateCustomer(
     @Param('customerId') customerId: string,
     @Body() args: UpdateCustomerDto,
   ) {
-    this.createCustomerUseCase.update(customerId, args);
+    await this.createCustomerUseCase.update(customerId, args);
     return {
       message: 'Customer updated successfully',
     };
