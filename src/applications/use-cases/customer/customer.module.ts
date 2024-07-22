@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { InfrastructureModule } from 'src/infrastructures/infrastructure.module';
 import { CreateCustomerUseCase } from './customer.use-case';
-import { CUSTOMER_REPOSITORY_TOKEN } from 'src/domains/repositories/repository.tokens';
 import { CustomerRepositoryImpl } from 'src/infrastructures/repositories/customer.repository.impl';
 import { CustomerController } from 'src/presentations/controllers/customer.controller';
+import { CUSTOMER_REPOSITORY_TOKEN } from 'src/domains/repositories/tokens.repository';
 
 @Module({
   imports: [InfrastructureModule],

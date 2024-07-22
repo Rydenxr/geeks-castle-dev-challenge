@@ -10,7 +10,7 @@ export class UserController {
 
   @Post()
   @ApiResponse({ status: 201, description: 'User successfully created.' })
-  async createUser(@Body() args: CreateUserDto) {
-    return await this.createUserUseCase.create(args);
+  createUser(@Body() args: CreateUserDto) {
+    return this.createUserUseCase.create(args);
   }
 }
