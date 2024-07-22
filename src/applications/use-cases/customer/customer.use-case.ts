@@ -6,7 +6,7 @@ import { UpdateCustomerDto } from 'src/applications/dtos/update-customer.dto';
 import { CustomerRepository } from 'src/domains/repositories/customer.repository';
 import { CUSTOMER_REPOSITORY_TOKEN } from '../../../domains/repositories/tokens.repository';
 import { calculateAge } from '../../../shared/utils/date.utils';
-import { DatabaseError } from 'src/infrastructures/exceptions/database-error';
+import { DatabaseError } from '../../../infrastructures/exceptions/database-error';
 
 @Injectable()
 export class CreateCustomerUseCase implements ICustomerUseCase {

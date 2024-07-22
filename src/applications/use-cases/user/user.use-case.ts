@@ -5,7 +5,7 @@ import { UserRepository } from '../../../domains/repositories/user.repository';
 import { CreateUserDto } from '../../dtos/create-user.dto';
 import { ICreateUserUseCase } from '../interfaces/user-use-case.interface';
 import { USER_REPOSITORY_TOKEN } from '../../../domains/repositories/tokens.repository';
-import { DatabaseError } from 'src/infrastructures/exceptions/database-error';
+import { DatabaseError } from '../../../infrastructures/exceptions/database-error';
 
 Injectable();
 export class CreateUserUseCase implements ICreateUserUseCase {

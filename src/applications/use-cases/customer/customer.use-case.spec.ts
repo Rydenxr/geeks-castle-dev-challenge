@@ -66,7 +66,7 @@ describe('CreateCustomerUseCase', () => {
     });
     mockCustomerRepository.update = jest
       .fn()
-      .mockRejectedValue(new Error('Update failed'));
+      .mockRejectedValue(new Error('Failed to update customer'));
 
     await expect(useCase.update(customerId, args)).rejects.toThrow(
       'Failed to update customer',
